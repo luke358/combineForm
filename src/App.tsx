@@ -1,11 +1,13 @@
 import React from 'react'
+import { useRoutes } from 'react-router-dom'
+import routes from '~react-pages'
 import './App.css'
-import { Button } from 'antd'
+
 function App() {
   return (
-    <div className="App">
-      <Button type="primary">init commit</Button>
-    </div>
+    <>
+      {useRoutes(routes)}
+    </>
   )
 }
 

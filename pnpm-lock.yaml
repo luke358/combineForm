@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@faker-js/faker': ^7.4.0
   '@luke358/eslint-config': ^0.1.1
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
@@ -21,6 +22,7 @@ dependencies:
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
+  '@faker-js/faker': 7.4.0
   '@luke358/eslint-config': 0.1.1_4rv7y5c6xz3vfxwhbrcxxi73bq
   '@types/react': 18.0.17
   '@types/react-dom': 18.0.6
@@ -374,6 +376,11 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@faker-js/faker/7.4.0:
+    resolution: {integrity: sha512-xDd3Tvkt2jgkx1LkuwwxpNBy/Oe+LkZBTwkgEFTiWpVSZgQ5sc/LenbHKRHbFl0dq/KFeeq/szyyPtpJRKY0fg==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: true
 
   /@humanwhocodes/config-array/0.10.4:

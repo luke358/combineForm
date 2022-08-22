@@ -76,7 +76,7 @@ export const TAG_FILTER = [
   // },
 ]
 
-export const TERMINAL_FILTER = [
+export const TERMINAL_FILTER: FilterType[] = [
   {
     key: 'terminal_name',
     desc: '终端名称',

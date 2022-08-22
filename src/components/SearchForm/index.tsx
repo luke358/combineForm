@@ -1,11 +1,12 @@
 import { Button, Col, Form, Row, Select } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { cloneDeep, isEmpty, isObject } from 'lodash'
 import { getFilterFields } from '../../constants'
 import type { FilterType } from '../../constants/public'
 import * as FormRender from '../FormRender'
 
 interface SearchFormProps {
-  onSubmit: () => void
+  onSubmit: (params: any) => void
   columns: any[]
   currentTab: string
   currentBusiness: string
@@ -16,7 +17,7 @@ interface SearchFormProps {
 const FormItem = Form.Item
 const Option = Select.Option
 export default function SearchForm({ onSubmit, currentTab, currentBusiness, extraBtn, loading }: SearchFormProps) {
-  const [filterList, setFilterList] = useState([])
+  const [filterList, setFilterList] = useState<FilterType[]>([])
   const [form] = Form.useForm()
   useEffect(() => {
     setFilterList(getFilterFields(currentTab, currentBusiness))
@@ -79,12 +80,35 @@ export default function SearchForm({ onSubmit, currentTab, currentBusiness, extr
   }
 
   const handleFormSubmit = (handleType: string) => {
+    const filtesArr = [...filterList]
+
     form.validateFields().then((values) => {
-      console.log(values, handleType)
+      const params = cloneDeep(values)
+
+      const newParams: any[] = []
+      Object.keys(params).forEach((item) => {
+        if (isEmpty(item)) { delete params[item] }
+        // 业务特殊组件
+        else if (isObject(params[item]) && params[item].type && params[item].value) {
+          newParams.push({
+            key: item,
+            ...params[item],
+          })
+        }
+        else {
+          const obj = filtesArr.find(fi => fi.key === item)
+          const type = obj ? obj.type : null
+          newParams.push({
+            key: item,
+            value: params[item],
+            type,
+          })
+        }
+      })
 
       switch (handleType) {
         case 'search':
-          onSubmit()
+          onSubmit(newParams)
           break
         case 'download':
           console.log('download')

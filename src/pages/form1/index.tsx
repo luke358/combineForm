@@ -36,8 +36,14 @@ export default function index() {
       ))}
     </Radio.Group>
   </div>
-  const handleSubmitFilter = () => {
+  const handleSubmitFilter = (searchParams: any) => {
+    const params = {
+      currentTab,
+      currentBusiness,
+      searchParams,
+    }
     setLoading(true)
+    console.log(params)
     setTimeout(() => {
       setLoading(false)
     }, 2000)

@@ -1,4 +1,5 @@
 import * as common from './public'
+import type { FilterType } from './public'
 
 export const SCENEENUM: Record<string, string> = {
   TERMINAL: '终端',
@@ -16,20 +17,20 @@ export const SCENE_BUSINESS_CATEGORY: Record<string, Array<string>> = {
   LOG: ['TEST', 'PUBLIC'],
 }
 
-export const TERMINAL_FILTER = {
+export const TERMINAL_FILTER: Record<string, FilterType[]> = {
   PUBLIC: common.TERMINAL_FILTER,
 }
 
-export const TAG_FILTER = {
+export const TAG_FILTER: Record<string, FilterType[]> = {
   PUBLIC: common.TAG_FILTER,
 }
 
-export const LOG_FILTER = {
+export const LOG_FILTER: Record<string, FilterType[]> = {
   PUBLIC: common.LOG_FILTER,
   TEST: common.TEST_FILTER,
 }
 
-export const TYPE_FILTER: Record<string, any> = {
+export const TYPE_FILTER: Record<string, Record<string, FilterType[]>> = {
   TERMINAL: TERMINAL_FILTER,
   TAG: TAG_FILTER,
   LOG: LOG_FILTER,

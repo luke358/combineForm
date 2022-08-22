@@ -1,6 +1,16 @@
 import * as common from './public'
 import type { FilterType } from './public'
 
+/**
+ * 配置步骤
+ * 1. 定义展示tab: SCENEENUM，或者在已有tab中进行添加业务
+ * 2. 定义业务菜单: BUSINESS_CATEGORY， 如果存在已有业务直接跳过
+ * 3. 展示tab中导入业务菜单: SCENE_BUSINESS_CATEGORY [业务1, 业务2 ....]
+ * 4. 定义业务查询筛选条件: 参考 TERMINAL_FILTER, 最后在 TYPE_FILTER 中注入
+ * 5. 如果已有组件不能满足需求, 可以在 components/FormRender 中添加组件， 然后在 SearchForm 中的 renderComponent 方法中进行特定处理
+ * 通过上述配置可以快速生成业务表单，极大减少开发时间
+ */
+
 export const SCENEENUM: Record<string, string> = {
   TERMINAL: '终端',
   TAG: '标签筛选',

@@ -1,4 +1,4 @@
-import { Button, Col, Form, Row, Select } from 'antd'
+import { Button, Col, Form, Row, Select, message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { cloneDeep, isEmpty, isObject } from 'lodash'
 import { getFilterFields } from '../../constants'
@@ -16,7 +16,7 @@ interface SearchFormProps {
 
 const FormItem = Form.Item
 const Option = Select.Option
-export default function SearchForm({ onSubmit, currentTab, currentBusiness, extraBtn, loading }: SearchFormProps) {
+export default function SearchForm({ onSubmit, columns, currentTab, currentBusiness, extraBtn, loading }: SearchFormProps) {
   const [filterList, setFilterList] = useState<FilterType[]>([])
   const [form] = Form.useForm()
   useEffect(() => {
@@ -65,7 +65,8 @@ export default function SearchForm({ onSubmit, currentTab, currentBusiness, extr
     return null
   }
 
-  // TODO: 定义 base 基础表单
+  // TODO: 定义 base 基础表单, 可以通过第二个参数来指定表单
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const customForm = (items: FilterType[], type = 'base') => {
     return <Row gutter={24} >
       {items.map((item) => {
@@ -78,9 +79,16 @@ export default function SearchForm({ onSubmit, currentTab, currentBusiness, extr
       })}
     </Row>
   }
-
+  /**
+   *
+   * @param handleType search download ...
+   */
   const handleFormSubmit = (handleType: string) => {
-    const filtesArr = [...filterList]
+    if (columns.length === 0) {
+      message.error('请先设置表头')
+      return
+    }
+    const filtesArr = [/* ...baseFilterList 基础过滤条件 */...filterList]
 
     form.validateFields().then((values) => {
       const params = cloneDeep(values)
@@ -111,6 +119,7 @@ export default function SearchForm({ onSubmit, currentTab, currentBusiness, extr
           onSubmit(newParams)
           break
         case 'download':
+          // eslint-disable-next-line no-console
           console.log('download')
       }
     })

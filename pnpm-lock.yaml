@@ -10,6 +10,7 @@ specifiers:
   antd: ^4.22.6
   eslint: ^8.22.0
   lodash: ^4.17.21
+  moment: ^2.29.4
   react: ^18.2.0
   react-dom: ^18.2.0
   react-router-dom: ^6.3.0
@@ -20,6 +21,7 @@ specifiers:
 dependencies:
   antd: 4.22.6_biqbaboplfbrettd7655fr4n2y
   lodash: 4.17.21
+  moment: 2.29.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y

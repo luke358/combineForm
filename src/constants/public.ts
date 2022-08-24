@@ -3,11 +3,22 @@ export interface FilterType {
   desc: string
   domType: string
   type: string
-  placeholder?: string
+  placeholder?: string | [string, string]
   options?: any
-  formItemStyle?: StyleSheet
+  formItemStyle?: any
   fetchFn?: string
   mode?: 'multiple' | 'tags' | undefined
+  rangeMode?: 'time' | 'date' | 'month' | 'year' | 'decade' | 'quarter' | 'week'
+  picker?: 'date' | 'week' | 'month' | 'quarter' | 'year' | 'time'
+  span?: 8 | 12 | 16
+  format?: string
+
+  showHour?: boolean
+  showMinute?: boolean
+  showNow?: boolean
+  showSecond?: boolean
+  showTime?: boolean | Object
+
 }
 export const LOG_FILTER: FilterType[] = [
   // {
@@ -91,7 +102,7 @@ export const TERMINAL_FILTER: FilterType[] = [
   },
 ]
 
-export const TEST_FILTER = [
+export const TEST_FILTER: FilterType[] = [
   {
     key: 'testtag7',
     desc: '认领状态',
@@ -100,6 +111,83 @@ export const TEST_FILTER = [
     type: 'EQUAL',
     options: {
       selectOptions: [{ key: '是', value: true }, { key: '否', value: false }],
+    },
+  },
+  {
+    key: 'DatePicker',
+    desc: 'DatePicker',
+    domType: 'RangePicker',
+    // showTime: false,
+    type: 'BETWEEN',
+    span: 12,
+    picker: 'date',
+    format: 'YYYY-MM-DD',
+    placeholder: ['开始时间', '结束时间'],
+    formItemStyle: {
+      width: '100%',
+    },
+  },
+  {
+    key: 'WeekPicker',
+    desc: 'WeekPicker',
+    picker: 'week',
+    domType: 'RangePicker',
+    type: 'BETWEEN',
+    span: 12,
+    placeholder: ['开始周', '结束周'],
+    formItemStyle: {
+      width: '100%',
+    },
+  },
+  {
+    key: 'MonthPicker',
+    desc: 'MonthPicker',
+    picker: 'month',
+    domType: 'RangePicker',
+    type: 'BETWEEN',
+    span: 12,
+    placeholder: ['开始月份', '结束月份'],
+    formItemStyle: {
+      width: '100%',
+    },
+  },
+  {
+    key: 'quarterPicker',
+    desc: 'quarterPicker',
+    picker: 'quarter',
+    domType: 'RangePicker',
+    type: 'BETWEEN',
+    span: 12,
+    placeholder: ['开始季度', '结束季度'],
+    formItemStyle: {
+      width: '100%',
+    },
+  },
+  {
+    key: 'YearPicker',
+    desc: 'YearPicker',
+    picker: 'year',
+    domType: 'RangePicker',
+    type: 'BETWEEN',
+    span: 12,
+    placeholder: ['开始年份', '结束年份'],
+    formItemStyle: {
+      width: '100%',
+    },
+  },
+  {
+    key: 'timePicker',
+    desc: 'timePicker',
+    picker: 'time',
+    showHour: true,
+    showMinute: true,
+    showSecond: true,
+    domType: 'RangePicker',
+    type: 'BETWEEN',
+    span: 12,
+    placeholder: ['开始', '结束'],
+    formItemStyle: {
+      width: '100%',
     },
   },
 ]

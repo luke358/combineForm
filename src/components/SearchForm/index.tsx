@@ -43,7 +43,7 @@ export default function SearchForm({ onSubmit, columns, currentTab, currentBusin
     }
 
     if (domType === 'Input')
-      return <COMPONENT placeholder={placeholder} />
+      return <COMPONENT placeholder={placeholder as string} />
 
     if (domType === 'Select') {
       const selectOptions = options.selectOptions || []
@@ -57,6 +57,15 @@ export default function SearchForm({ onSubmit, columns, currentTab, currentBusin
             </Option>
           ))}
         </Select>
+      )
+    }
+    if (domType === 'RangePicker') {
+      return (
+        <COMPONENT
+          currentTab={currentTab}
+          currentBusiness={currentBusiness}
+          componentInfo={component}
+        />
       )
     }
 
@@ -82,7 +91,7 @@ export default function SearchForm({ onSubmit, columns, currentTab, currentBusin
     return <Row gutter={24} >
       {items.map((item) => {
         const formItemStyle = item.formItemStyle || {}
-        return <Col span={8} key={item.key}>
+        return <Col span={item?.span || 8} key={item.key}>
           <FormItem label={item.desc} style={formItemStyle} name={item.key}>
             {renderComponent(item)}
           </FormItem>

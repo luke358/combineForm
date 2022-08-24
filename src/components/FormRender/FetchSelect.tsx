@@ -3,9 +3,11 @@ import { Select } from 'antd'
 import type { FilterType } from '../../constants/public'
 import * as services from '../../services'
 interface FetchSelectProps {
-  componentInfo: FilterType
-  onChange: (value: any) => void
-  value: string | string[]
+  componentInfo?: FilterType
+  onChange?: (value: any) => void
+  value?: string | string[]
+  currentTab?: string
+  currentBusiness?: string
 }
 interface OptType {
   key: string
@@ -17,14 +19,14 @@ export default function FetchSelect({ componentInfo, onChange, value }: FetchSel
   const [opts, setOpt] = useState<OptType[]>([])
 
   const getListData = async () => {
-    const { fetchFn } = componentInfo
+    const { fetchFn } = componentInfo!
     if (fetchFn && services[fetchFn as keyof typeof services]) {
       const resp = await services[fetchFn as keyof typeof services]()
       setOpt(resp)
     }
   }
   const handleChange = (value: string[] | string) => {
-    onChange(value)
+    onChange && onChange(value)
   }
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function FetchSelect({ componentInfo, onChange, value }: FetchSel
       showSearch
       allowClear
       optionFilterProp="children"
-      placeholder={componentInfo.placeholder}
+      placeholder={componentInfo?.placeholder}
       onChange={handleChange}
       value={value}
     >

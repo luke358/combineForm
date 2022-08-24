@@ -76,9 +76,11 @@ export const TERMINAL_FILTER: FilterType[] = [
   {
     key: 'terminal_name',
     desc: '终端名称',
-    domType: 'TerminalSelect',
+    domType: 'FetchSelect',
     placeholder: '请选择终端名称',
     type: 'IN',
+    fetchFn: 'fetchSelect2',
+    mode: 'multiple',
   },
   {
     key: 'device_fingerprint',

@@ -1,4 +1,4 @@
-import { createFetchSelect } from './utils/fakerData'
+import { createFetchSelect, createRandomSelect } from './utils/fakerData'
 
 export const fetchSelect1: any = () => {
   const data = []
@@ -9,10 +9,8 @@ export const fetchSelect1: any = () => {
 }
 
 export const fetchSelect2 = (): { key: string; value: string }[] => {
-  const data = []
   // 模拟数据
-  for (let i = 0; i < 10; i++)
-    data.push(createFetchSelect())
+  const data = Array.from({ length: 10 }).map(() => createRandomSelect())
   return data
 }
 

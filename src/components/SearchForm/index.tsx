@@ -35,6 +35,15 @@ export default function SearchForm({ onSubmit, columns, currentTab, currentBusin
     if (domType === 'Input')
       return <COMPONENT placeholder={placeholder} />
 
+    if (domType === 'FetchSelect') {
+      return (
+          <COMPONENT
+            currentTab={currentTab}
+            currentBusiness={currentBusiness}
+            componentInfo={component}
+          />
+      )
+    }
     if (domType === 'Select') {
       const selectOptions = options.selectOptions || []
       const selectMode = options.selectMode || ''
@@ -49,6 +58,7 @@ export default function SearchForm({ onSubmit, columns, currentTab, currentBusin
         </Select>
       )
     }
+
     if (domType) {
       return (
         <COMPONENT

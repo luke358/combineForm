@@ -6,6 +6,8 @@ export interface FilterType {
   placeholder?: string
   options?: any
   formItemStyle?: StyleSheet
+  fetchFn?: string
+  mode?: 'multiple' | 'tags' | undefined
 }
 export const LOG_FILTER: FilterType[] = [
   // {
@@ -38,16 +40,9 @@ export const LOG_FILTER: FilterType[] = [
       selectOptions: [{ key: '已解决', value: 'resolved' }, { key: '未解决', value: 'unresolved' }],
     },
   },
-  // {
-  //   key: 'submit_platform',
-  //   desc: '处理平台',
-  //   domType: 'SubmitPlatform',
-  //   placeholder: '请选择处理类型',
-  //   type: 'IN',
-  // },
 ]
 
-export const TAG_FILTER = [
+export const TAG_FILTER: FilterType[] = [
   {
     key: 'tag7',
     desc: '认领状态',
@@ -58,22 +53,23 @@ export const TAG_FILTER = [
       selectOptions: [{ key: '是', value: true }, { key: '否', value: false }],
     },
   },
-  // {
-  //   key: 'tags',
-  //   desc: '标签',
-  //   domType: 'FetchSelect',
-  //   placeholder: '请选择标签',
-  //   type: 'IN',
-  //   fetchFn: 'fetchTags',
-  // },
-  // {
-  //   key: 'flhd',
-  //   desc: '费率标签值',
-  //   domType: 'FetchSelect',
-  //   placeholder: '请选择普惠活动',
-  //   type: 'IN',
-  //   fetchFn: 'fetchRateTag',
-  // },
+  {
+    key: 'eventmultiple',
+    desc: '处理事项多选',
+    domType: 'FetchSelect',
+    placeholder: '请选择处理事项',
+    type: 'IN',
+    fetchFn: 'fetchSelect1',
+    mode: 'multiple',
+  },
+  {
+    key: 'event',
+    desc: '处理事项单选',
+    domType: 'FetchSelect',
+    placeholder: '请选择处理事项',
+    type: 'EQUAL',
+    fetchFn: 'fetchSelect1',
+  },
 ]
 
 export const TERMINAL_FILTER: FilterType[] = [
@@ -91,18 +87,6 @@ export const TERMINAL_FILTER: FilterType[] = [
     placeholder: '请输入终端SN',
     type: 'EQUAL',
   },
-  // {
-  //   key: 'ctime',
-  //   desc: '终端绑定时间',
-  //   domType: 'DateRangeSelector',
-  //   type: 'BETWEEN',
-  // },
-  // {
-  //   key: 'trans_date',
-  //   desc: '终端交易时间',
-  //   domType: 'MonthRangerPicker',
-  //   type: 'BETWEEN',
-  // },
 ]
 
 export const TEST_FILTER = [
@@ -116,20 +100,4 @@ export const TEST_FILTER = [
       selectOptions: [{ key: '是', value: true }, { key: '否', value: false }],
     },
   },
-  // {
-  //   key: 'tags',
-  //   desc: '标签',
-  //   domType: 'FetchSelect',
-  //   placeholder: '请选择标签',
-  //   type: 'IN',
-  //   fetchFn: 'fetchTags',
-  // },
-  // {
-  //   key: 'flhd',
-  //   desc: '费率标签值',
-  //   domType: 'FetchSelect',
-  //   placeholder: '请选择普惠活动',
-  //   type: 'IN',
-  //   fetchFn: 'fetchRateTag',
-  // },
 ]
